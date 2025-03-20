@@ -6,7 +6,7 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const articleRoutes = require('./routes/articleRoutes');
 const { errorHandler } = require('./middleware/errorMiddleware');
-// Staging version
+// Production version
 // Load environment variables
 dotenv.config();
 

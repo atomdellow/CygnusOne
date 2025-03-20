@@ -1,0 +1,15 @@
+{
+  "name": "cygnusone",
+  "version": "1.0.0",
+  "description": "Software developer for various technologies and industries.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.8.4"
+  }
+}

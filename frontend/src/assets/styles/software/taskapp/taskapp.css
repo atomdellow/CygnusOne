@@ -1,0 +1,140 @@
+.app-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 1160px;
+  padding: 2rem 1rem;
+}
+
+/* Add this rule to ensure all text is white */
+.app-container, 
+.app-container p, 
+.app-container label, 
+.app-container h1, 
+.app-container h2, 
+.app-container h3, 
+.app-container span {
+  color: white;
+}
+
+/* Elements that should have specific colors can override */
+.app-description {
+  color: var(--text-color-muted);
+  margin-bottom: 1.5rem;
+}
+
+.btn-back {
+  background-color: transparent;
+  color: var(--primary-color);
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+  display: inline-flex;
+  align-items: center;
+  float: left;
+}
+
+.btn-back:hover {
+  background-color: transparent;
+  color: #3c6bcf;
+}
+
+.app-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+}
+
+.task-form, .task-list {
+  background-color: var(--bg-color-light);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  height: fit-content;
+}
+
+.task-form h2, .task-list h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.task-item {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--primary-color);
+}
+
+.task-item.completed {
+  border-left-color: var(--highlight-color);
+  opacity: 0.8;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.task-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.task-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-sm {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+}
+
+.btn-completed {
+  background-color: var(--highlight-color);
+  color: var(--bg-color);
+}
+
+/* Ensure task description text is white */
+.task-description {
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.task-due-date {
+  font-size: 0.9rem;
+  color: var(--accent-color);
+}
+
+.loading, .no-tasks {
+  text-align: center;
+  padding: 2rem 0;
+  color: var(--text-color-muted);
+}
+
+@media (max-width: 768px) {
+  .app-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .task-form {
+    margin-bottom: 1.5rem;
+  }
+  
+  .task-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .task-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

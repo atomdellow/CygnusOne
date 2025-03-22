@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import './styles/theme.css';
 @import './base.css';
 
 :root {
@@ -9,10 +11,15 @@
   --dark-bg: #343a40;
 }
 
+/* Reset styles */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -97,12 +104,13 @@ body {
   border: 1px solid #c3e6cb;
 }
 
-#app {
+/* REMOVE THESE POTENTIALLY CONFLICTING STYLES */
+/* #app {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   font-weight: normal;
-}
+} */
 
 a,
 .green {
@@ -118,7 +126,8 @@ a,
   }
 }
 
-@media (min-width: 1024px) {
+/* REMOVE THESE POTENTIALLY CONFLICTING STYLES */
+/* @media (min-width: 1024px) {
   body {
     display: flex;
     place-items: center;
@@ -129,4 +138,4 @@ a,
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
   }
-}
+} */

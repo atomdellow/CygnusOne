@@ -1,15 +1,43 @@
 {
-  "name": "cygnusone",
+  "name": "cygnus-one",
   "version": "1.0.0",
-  "description": "Software developer for various technologies and industries.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "Full-stack application with Vue.js frontend and Node.js backend",
+  "main": "backend/server.js",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=7.0.0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "install": "npm run install:backend && npm run install:frontend",
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install:frontend && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/cygnus-one.git"
+  },
+  "keywords": [
+    "vue",
+    "node",
+    "express",
+    "mongodb"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yourusername/cygnus-one/issues"
+  },
+  "homepage": "https://github.com/yourusername/cygnus-one#readme",
   "dependencies": {
-    "axios": "^1.8.4"
+    "concurrently": "^7.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }

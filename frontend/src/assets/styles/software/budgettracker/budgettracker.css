@@ -1,0 +1,84 @@
+.app-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 1160px;
+  padding: 2rem 1rem;
+}
+
+/* Add this rule to ensure all text is white */
+.app-container, 
+.app-container p, 
+.app-container label, 
+.app-container h1, 
+.app-container h2, 
+.app-container h3, 
+.app-container span,
+.placeholder-content,
+.feature-list li {
+  color: white;
+}
+
+/* Elements that should have specific colors can override */
+.app-description {
+  color: var(--text-color-muted);
+  margin-bottom: 1.5rem;
+}
+
+.app-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  margin: 1rem 0;
+}
+
+.btn-back {
+  background-color: transparent;
+  color: var(--primary-color);
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+  display: inline-flex;
+  align-items: center;
+  float: left;
+}
+
+.btn-back:hover {
+  background-color: transparent;
+  color: #3c6bcf;
+}
+
+.app-content {
+  display: flex;
+  justify-content: center;
+}
+
+.placeholder-content {
+  background-color: var(--bg-color-light);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+}
+
+.feature-list {
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.feature-list ul {
+  list-style-type: disc;
+  padding-left: 2rem;
+  margin-top: 1rem;
+}
+
+.feature-list li {
+  margin-bottom: 0.5rem;
+}

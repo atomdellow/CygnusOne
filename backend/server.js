@@ -17,7 +17,7 @@ dotenv.config();
 connectDB();
 
 const app = express();
-
+//Cygnus One - Staging
 // Middleware
 app.use(cors());
 app.use(express.json());

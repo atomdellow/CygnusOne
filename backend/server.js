@@ -5,6 +5,8 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const articleRoutes = require('./routes/articleRoutes');
+const softwareRoutes = require('./routes/softwareRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 const { errorHandler } = require('./middleware/errorMiddleware');
 // Staging version
 // Load environment variables
@@ -24,6 +26,8 @@ app.use(morgan('dev'));
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/articles', articleRoutes);
+app.use('/api/software', softwareRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Base route for API health check
 app.get('/', (req, res) => {

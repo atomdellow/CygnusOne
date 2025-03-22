@@ -1,16 +1,21 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const path = require('path');
 const Article = require('../models/Article');
 const User = require('../models/User');
 
-// Load env vars
-dotenv.config({ path: '../.env' });
+// Load env vars - use path.resolve to get the correct path to .env file
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
+
+console.log('MONGO_URI:', process.env.MONGO_URI); // Add this to debug
 
 // Connect to DB
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => {
+    console.error('MongoDB connection error:', err);
+    process.exit(1);
+  });
 
 // Articles to seed
 const sampleArticles = [
@@ -247,7 +252,7 @@ const seedArticles = async () => {
     console.log('Database seeded successfully!');
     
     // Disconnect from MongoDB
-    mongoose.connection.close();
+    await mongoose.connection.close();
     
   } catch (error) {
     console.error('Error seeding database:', error);

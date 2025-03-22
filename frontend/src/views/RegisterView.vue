@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useAuthStore } from '../stores/auth';
+import '../assets/styles/views/auth.css';
 
 const authStore = useAuthStore();
 const name = ref('');
@@ -44,108 +45,80 @@ const handleRegister = async () => {
 </script>
 
 <template>
-  <div class="register-container">
-    <div class="register-card">
-      <h1>Register</h1>
-      
-      <div v-if="error" class="alert alert-danger">{{ error }}</div>
-      
-      <form @submit.prevent="handleRegister">
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input
-            type="text"
-            id="name"
-            class="form-control"
-            v-model="name"
-            placeholder="Enter your name"
-            required
-          />
-        </div>
+  <div class="auth-wrapper">
+    <div class="auth-container">
+      <div class="auth-card">
+        <h1>Register</h1>
         
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input
-            type="email"
-            id="email"
-            class="form-control"
-            v-model="email"
-            placeholder="Enter your email"
-            required
-          />
-        </div>
+        <div v-if="error" class="alert alert-danger">{{ error }}</div>
         
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            class="form-control"
-            v-model="password"
-            placeholder="Enter your password"
-            required
-          />
-        </div>
+        <form @submit.prevent="handleRegister">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              v-model="name"
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              v-model="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              class="form-control"
+              v-model="password"
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+          
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              class="form-control"
+              v-model="confirmPassword"
+              placeholder="Confirm your password"
+              required
+            />
+          </div>
+          
+          <button type="submit" class="btn btn-block" :disabled="loading">
+            {{ loading ? 'Registering...' : 'Register' }}
+          </button>
+        </form>
         
-        <div class="form-group">
-          <label for="confirmPassword">Confirm Password</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            class="form-control"
-            v-model="confirmPassword"
-            placeholder="Confirm your password"
-            required
-          />
-        </div>
-        
-        <button type="submit" class="btn btn-block" :disabled="loading">
-          {{ loading ? 'Registering...' : 'Register' }}
-        </button>
-      </form>
-      
-      <p class="login-link">
-        Already have an account?
-        <router-link to="/login">Login</router-link>
-      </p>
+        <p class="alt-link">
+          Already have an account?
+          <router-link to="/login">Login</router-link>
+        </p>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.register-container {
+.auth-wrapper {
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 70vh;
-}
-
-.register-card {
-  width: 100%;
-  max-width: 400px;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  background: white;
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 30px;
-  color: var(--secondary-color);
-}
-
-.btn-block {
-  width: 100%;
-  margin-top: 20px;
-}
-
-.login-link {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.login-link a {
-  color: var(--primary-color);
 }
 </style>

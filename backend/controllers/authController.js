@@ -1,5 +1,30 @@
 const User = require('../models/User');
 const asyncHandler = require('express-async-handler');
+const jwt = require('jsonwebtoken');
+
+// Ensure we're including role in the JWT payload and in the returned user object
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: '30d',
+  });
+};
+
+// Generate token and send response
+const sendTokenResponse = (user, statusCode, res) => {
+  // Create token
+  const token = generateToken(user._id);
+
+  res.status(statusCode).json({
+    success: true,
+    token,
+    user: {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role // Ensure role is included
+    }
+  });
+};
 
 // @desc    Register user
 // @route   POST /api/auth/register
@@ -23,15 +48,7 @@ const registerUser = asyncHandler(async (req, res) => {
   });
 
   if (user) {
-    res.status(201).json({
-      success: true,
-      token: user.getSignedJwtToken(),
-      user: {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-      },
-    });
+    sendTokenResponse(user, 201, res);
   } else {
     res.status(400);
     throw new Error('Invalid user data');
@@ -60,15 +77,7 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new Error('Invalid credentials');
   }
 
-  res.json({
-    success: true,
-    token: user.getSignedJwtToken(),
-    user: {
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-    },
-  });
+  sendTokenResponse(user, 200, res);
 });
 
 // @desc    Get current logged in user
@@ -83,6 +92,7 @@ const getMe = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      role: user.role // Ensure role is included
     },
   });
 });

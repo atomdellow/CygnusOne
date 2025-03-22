@@ -19,6 +19,9 @@ connectDB();
 const app = express();
 //Cygnus One - Staging
 // Some more change 
+// Adjustments
+var deployCount = 0;
+deployCount = 1;
 // Middleware
 app.use(cors());
 app.use(express.json());

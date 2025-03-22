@@ -17,11 +17,7 @@ dotenv.config();
 connectDB();
 
 const app = express();
-//Cygnus One - Staging
-// Some more change 
-// Adjustments
-var deployCount = 0;
-deployCount = 1;
+
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -37,11 +33,14 @@ app.use('/api/admin', adminRoutes);
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
-  app.use(express.static(path.join(__dirname, '../frontend/dist')));
+  const distPath = path.join(__dirname, '../frontend/dist');
+  console.log('Serving static files from:', distPath);
+  
+  app.use(express.static(distPath));
 
   // Any route that's not an API route should go to index.html
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../frontend', 'dist', 'index.html'));
+    res.sendFile(path.resolve(distPath, 'index.html'));
   });
 } else {
   // Base route for API health check in development

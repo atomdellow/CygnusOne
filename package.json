@@ -16,7 +16,8 @@
     "install": "npm run install:backend && npm run install:frontend",
     "install:backend": "cd backend && npm install",
     "install:frontend": "cd frontend && npm install",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install:frontend && npm run build"
+    "heroku-postbuild": "npm run install:frontend && npm run build",
+    "generate-lock": "npm install --package-lock-only"
   },
   "repository": {
     "type": "git",
@@ -38,7 +39,7 @@
     "concurrently": "^7.6.0",
     "express": "^4.18.2",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
+    "dotenv": "^16.0.3",
     "mongoose": "^7.0.3"
   },
   "devDependencies": {

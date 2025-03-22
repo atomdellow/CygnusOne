@@ -95,25 +95,39 @@ const updateArticle = asyncHandler(async (req, res) => {
 // @route   DELETE /api/articles/:id
 // @access  Private
 const deleteArticle = asyncHandler(async (req, res) => {
-  const article = await Article.findById(req.params.id);
+  try {
+    const article = await Article.findById(req.params.id);
 
-  if (!article) {
-    res.status(404);
-    throw new Error('Article not found');
+    if (!article) {
+      res.status(404);
+      throw new Error('Article not found');
+    }
+
+    // Make sure user is the article author
+    if (article.author.toString() !== req.user.id) {
+      res.status(401);
+      throw new Error('Not authorized to delete this article');
+    }
+
+    // Use findByIdAndDelete instead of deleteOne for more reliability
+    const deletedArticle = await Article.findByIdAndDelete(req.params.id);
+    
+    if (!deletedArticle) {
+      res.status(404);
+      throw new Error('Failed to delete article');
+    }
+
+    res.json({
+      success: true,
+      data: {},
+    });
+  } catch (error) {
+    // If it's not a handled error, set 500 status
+    if (!res.statusCode || res.statusCode === 200) {
+      res.status(500);
+    }
+    throw error;
   }
-
-  // Make sure user is the article author
-  if (article.author.toString() !== req.user.id) {
-    res.status(401);
-    throw new Error('Not authorized to delete this article');
-  }
-
-  await article.remove();
-
-  res.json({
-    success: true,
-    data: {},
-  });
 });
 
 module.exports = {

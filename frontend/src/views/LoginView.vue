@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useAuthStore } from '../stores/auth';
+import '../assets/styles/views/auth.css';
 
 const authStore = useAuthStore();
 const email = ref('');
@@ -31,84 +32,56 @@ const handleLogin = async () => {
 </script>
 
 <template>
-  <div class="login-container">
-    <div class="login-card">
-      <h1>Login</h1>
-      
-      <div v-if="error" class="alert alert-danger">{{ error }}</div>
-      
-      <form @submit.prevent="handleLogin">
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input
-            type="email"
-            id="email"
-            class="form-control"
-            v-model="email"
-            placeholder="Enter your email"
-            required
-          />
-        </div>
+  <div class="auth-wrapper">
+    <div class="auth-container">
+      <div class="auth-card">
+        <h1>Login</h1>
         
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            class="form-control"
-            v-model="password"
-            placeholder="Enter your password"
-            required
-          />
-        </div>
+        <div v-if="error" class="alert alert-danger">{{ error }}</div>
         
-        <button type="submit" class="btn btn-block" :disabled="loading">
-          {{ loading ? 'Logging in...' : 'Login' }}
-        </button>
-      </form>
-      
-      <p class="register-link">
-        Don't have an account?
-        <router-link to="/register">Register</router-link>
-      </p>
+        <form @submit.prevent="handleLogin">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              v-model="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              class="form-control"
+              v-model="password"
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+          
+          <button type="submit" class="btn btn-block" :disabled="loading">
+            {{ loading ? 'Logging in...' : 'Login' }}
+          </button>
+        </form>
+        
+        <p class="alt-link">
+          Don't have an account?
+          <router-link to="/register">Register</router-link>
+        </p>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.login-container {
+.auth-wrapper {
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 70vh;
-}
-
-.login-card {
-  width: 100%;
-  max-width: 400px;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  background: white;
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 30px;
-  color: var(--secondary-color);
-}
-
-.btn-block {
-  width: 100%;
-  margin-top: 20px;
-}
-
-.register-link {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.register-link a {
-  color: var(--primary-color);
 }
 </style>
